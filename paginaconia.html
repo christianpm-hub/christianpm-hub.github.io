@@ -98,10 +98,17 @@
 				display:none;
 			}
 			.menu[aria-expanded="true"] .dropdown{display:block}
-			.dropdown a{
-				display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;text-decoration:none;color:var(--text);
-			}
-			.dropdown a:hover{background:rgba(255,255,255,0.04)}
+					.dropdown a{
+						display:flex;
+						flex-direction:row;
+						align-items:flex-start;
+						gap:12px;
+						padding:10px;border-radius:8px;text-decoration:none;color:var(--text);
+					}
+					.dropdown a:hover{background:rgba(255,255,255,0.04)}
+					.menu-item{display:flex;flex-direction:column}
+					.menu-item .label{font-weight:700}
+					.menu-item .item-desc{font-size:.85rem;color:var(--muted);margin-top:4px;max-width:260px}
 			.dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(180deg,var(--accent),var(--accent-2));box-shadow:0 4px 18px rgba(32,64,90,0.25)}
 
 			/* Hero */
@@ -168,14 +175,55 @@
 						<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
 					</button>
 
-					<div class="dropdown" role="menu" aria-label="Navegación principal">
-						<a href="#inicio" role="menuitem"><span class="dot" aria-hidden="true"></span>Inicio</a>
-						<a href="#sobre-nosotros" role="menuitem"><span class="dot" aria-hidden="true"></span>Sobre nosotros</a>
-						<a href="#precios" role="menuitem"><span class="dot" aria-hidden="true"></span>Precios</a>
-						<a href="#puntos" role="menuitem"><span class="dot" aria-hidden="true"></span>Puntos de inmersión</a>
-						<a href="#galeria" role="menuitem"><span class="dot" aria-hidden="true"></span>Galería</a>
-						<a href="#tienda" role="menuitem"><span class="dot" aria-hidden="true"></span>Tienda</a>
-					</div>
+								<div class="dropdown" role="menu" aria-label="Navegación principal">
+									<a href="paginaconia.html#inicio" role="menuitem">
+										<span class="dot" aria-hidden="true"></span>
+										<div class="menu-item">
+											<span class="label">Inicio</span>
+											<span class="item-desc">Bienvenido: explora y aprende con inmersiones guiadas y recursos para comenzar.</span>
+										</div>
+									</a>
+
+									<a href="sobre-nosotros.html" role="menuitem">
+										<span class="dot" aria-hidden="true"></span>
+										<div class="menu-item">
+											<span class="label">Sobre nosotros</span>
+											<span class="item-desc">Somos un equipo dedicado a crear experiencias de aprendizaje inmersivas. Combinamos pedagogía con tecnología.</span>
+										</div>
+									</a>
+
+									<a href="precios.html" role="menuitem">
+										<span class="dot" aria-hidden="true"></span>
+										<div class="menu-item">
+											<span class="label">Precios</span>
+											<span class="item-desc">Planes gratuitos y de pago; los planes Pro incluyen seguimiento personalizado y contenido avanzado.</span>
+										</div>
+									</a>
+
+									<a href="puntos.html" role="menuitem">
+										<span class="dot" aria-hidden="true"></span>
+										<div class="menu-item">
+											<span class="label">Puntos de inmersión</span>
+											<span class="item-desc">Lecciones prácticas cortas con feedback inmediato (10–20 minutos por punto).</span>
+										</div>
+									</a>
+
+									<a href="galeria.html" role="menuitem">
+										<span class="dot" aria-hidden="true"></span>
+										<div class="menu-item">
+											<span class="label">Galería</span>
+											<span class="item-desc">Ejemplos visuales y capturas con explicaciones paso a paso.</span>
+										</div>
+									</a>
+
+									<a href="tienda.html" role="menuitem">
+										<span class="dot" aria-hidden="true"></span>
+										<div class="menu-item">
+											<span class="label">Tienda</span>
+											<span class="item-desc">Guías descargables, cursos extendidos y packs de ejercicios.</span>
+										</div>
+									</a>
+								</div>
 				</nav>
 			</header>
 
@@ -277,16 +325,16 @@
 					if(e.key === 'Escape') setExpanded(false);
 				});
 
-				// Smooth scroll for internal links
-				document.querySelectorAll('a[href^="#"]').forEach(a=>{
-					a.addEventListener('click', function(e){
-						const href = this.getAttribute('href');
-						if(href.length > 1){
-							const el = document.querySelector(href);
-							if(el){ el.scrollIntoView({behavior:'smooth'}); e.preventDefault(); setExpanded(false); }
-						}
-					});
-				});
+								// Smooth scroll for internal links (anchors on this page)
+								document.querySelectorAll('a[href^="#"]').forEach(a=>{
+									a.addEventListener('click', function(e){
+										const href = this.getAttribute('href');
+										if(href.length > 1){
+											const el = document.querySelector(href);
+											if(el){ el.scrollIntoView({behavior:'smooth'}); e.preventDefault(); setExpanded(false); }
+										}
+									});
+								});
 			})();
 		</script>
 	</body>
