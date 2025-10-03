@@ -1,0 +1,24 @@
+Hazme una pagina con una cabecera con un menu desplegable de 6 entradas, que sean inicio, sobre nosotros, precios, puntos de inmersion, galeria y tienda. Ponle una imagen en el fondo, y que el diseño sea muy moderno y didáctico.
+Quitame las descripciones y cuadrados de "sobre nosotros", "precios", "Puntos de inmersion", "Galeria" y "Tienda".
+las secciones didacticas quitamelas que ahi no pegan, y la descripcion que tiene cada una añadela a la entrada de cada pestaña.
+paginas independientes.
+ten en cuenta que esta es la pagina que se van a encontrar nada mas entrar, los contenedores de "inmersion al oceano", "especialistas", "seguridad", "recursos", y "PD" añademelos a la pagina de sobre mi en el menu desplegable.
+que las paginas de cada entrada del menu desplegable sean como esta misma pero que solo cambie el contenido.
+el bloque que tiene "Bienvenido a Inmersiones Montalbán!!!
+Explora y acercate más al mundo del oceano por las playas de Granada
+Tenemos trajes y accesorios para comprar en nuestra Tienda, además de actividades de inmersión en las playas de Granada. Anímate!!!
+
+Inmersiones al océano
+Paseo por los paisajes marinos de Granada guiados con un instructor
+
+Especialistas
+Tenemos a los mejores instructores de la comunidad para mostrarte la inmensidad del océano
+
+Seguridad
+Prevalecemos la seguridad ante todo cuando nos movemos en el medio acuatico
+
+Recursos
+Si no tienes recursos para realizar las actividades nosotros te lo proporcionamos
+
+PD: Para más información llamanos y te antenderemos lo más rapido posible" quitalo de la pagina de inicio y ponlo en la pagina de entrada de sobre nosotros.
+lo de quitar las duplicadas si, las anclas de momento no.
