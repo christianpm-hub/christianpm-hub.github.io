@@ -6,16 +6,38 @@
     <title>Tienda — Inmersiones Montalbán</title>
     <meta name="description" content="Tienda - Inmersiones Montalbán" />
     <style>
-      body{font-family:Inter, system-ui, Arial; background:#06202a;color:#e6eef3;margin:0;display:flex;align-items:center;justify-content:center;height:100vh}
-      .card{background:rgba(255,255,255,0.03);padding:28px;border-radius:12px;max-width:760px;margin:20px;border:1px solid rgba(255,255,255,0.04)}
-      a.back{display:inline-block;margin-top:18px;color:#6EE7B7;text-decoration:none;font-weight:700}
+      :root{--accent:#6EE7B7;--muted:rgba(230,238,243,0.75)}
+      body{font-family:Inter, system-ui, Arial; background:#06202a;color:#e6eef3;margin:0;min-height:100vh;padding:28px;display:flex;align-items:flex-start;justify-content:center}
+      .wrap{max-width:1000px;width:100%}
+      .card{background:rgba(255,255,255,0.03);padding:28px;border-radius:12px;margin:12px 0;border:1px solid rgba(255,255,255,0.04)}
+      h1{margin-top:0}
+      .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+      .info{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+      .info h4{margin:6px 0;color:inherit}
+      .info p{margin:0;color:var(--muted);font-size:.95rem}
+      .hint{margin-top:14px;color:var(--muted);font-size:.95rem}
+      a.back{display:inline-block;margin-top:18px;color:var(--accent);text-decoration:none;font-weight:700}
+      @media (max-width:720px){.cards{grid-template-columns:1fr}}
     </style>
   </head>
   <body>
-    <div class="card">
-      <h1>Tienda</h1>
-      <p>Recursos adicionales: guías descargables, cursos extendidos y packs de ejercicios.</p>
-      <a class="back" href="paginaconia.html">&larr; Volver a inicio</a>
+    <div class="wrap">
+      <div class="card">
+        <h1>Tienda</h1>
+        <p>Recursos adicionales: guías descargables, cursos extendidos y packs de ejercicios.</p>
+      </div>
+
+      <div class="card">
+        <h3>Productos destacados</h3>
+        <div class="cards">
+          <div class="info"><h4>Traje básico</h4><p>Trajes y accesorios esenciales para inmersiones seguras.</p></div>
+          <div class="info"><h4>Packs de aprendizaje</h4><p>Guías y ejercicios descargables para entrenamiento continuo.</p></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <a class="back" href="paginaconia.html">&larr; Volver a inicio</a>
+      </div>
     </div>
   </body>
 </html>
