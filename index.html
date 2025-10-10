@@ -34,11 +34,11 @@
 						align-items:center;
 						justify-content:center; /* center page content */
 						/* increase top padding so fixed header doesn't overlap content */
-						padding:96px 32px 32px;
+						padding:110px 32px 32px;
 					}
 			.container{
 				width:100%;
-				max-width:760px;
+				max-width:1300px; /* allow even wider center area so layout is more horizontal */
 				margin:0 auto;
 				display:flex;
 				flex-direction:column;
@@ -51,16 +51,15 @@
 								align-items:center;
 								justify-content:space-between;
 								gap:16px;
-								/* make header fixed to top */
+								/* stretch the header across the top */
 								position:fixed;
-								top:16px;
-								left:50%;
-								transform:translateX(-50%);
-								width:calc(100% - 64px);
-								max-width:1100px;
-								padding:10px 16px;
-								background:linear-gradient(180deg, rgba(4,20,30,0.6), rgba(4,20,30,0.45));
-								border-radius:14px;
+								top:0;
+								left:0;
+								right:0;
+								width:100%;
+								padding:14px 28px;
+								background:linear-gradient(180deg, rgba(4,20,30,0.8), rgba(4,20,30,0.6));
+								border-radius:0;
 								box-shadow:0 8px 30px rgba(2,6,23,0.45);
 								z-index:1400; /* keep header above other content */
 							}
@@ -71,6 +70,25 @@
 				text-decoration:none;
 				color:var(--text);
 			}
+
+			/* Info icon + popover (hover to reveal quick items) */
+			.info-wrap{position:relative;display:flex;align-items:center;gap:8px}
+			.info-icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06293a;border:0;cursor:pointer;font-weight:800;box-shadow:0 6px 16px rgba(2,6,23,0.25)}
+			.info-icon:focus{outline:2px solid rgba(110,231,183,0.25);outline-offset:3px}
+			.popover{position:absolute;right:0;top:calc(100% + 10px);min-width:240px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:10px;padding:12px;box-shadow:0 12px 36px rgba(2,6,23,0.45);border:1px solid rgba(255,255,255,0.04);opacity:0;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease;pointer-events:none;z-index:1500}
+			/* popover visibility is controlled via JS for consistent backdrop handling */
+			.info-open .popover{opacity:1;transform:none;pointer-events:auto}
+			.popover ul{margin:0;padding:0;list-style:none}
+			.popover li{padding:8px 6px;border-bottom:1px solid rgba(255,255,255,0.03);color:var(--muted);font-size:0.95rem}
+			.popover li strong{color:var(--text);display:block;margin-bottom:4px}
+			.popover li:last-child{border-bottom:0}
+			/* Localized dark background behind the popover (only covers popover area) */
+			.popover{position:absolute;right:0;top:calc(100% + 10px);min-width:240px;background:transparent;border-radius:10px;padding:0;opacity:0;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease;pointer-events:none;z-index:1500}
+			/* the dark panel sits behind the text content */
+			.popover .popover-bg{position:absolute;inset:0;background:rgba(2,6,23,0.85);border-radius:10px;z-index:0;opacity:0;transition:opacity .18s ease}
+			.popover .popover-content{position:relative;z-index:1;padding:12px;background:transparent;color:var(--muted)}
+			.info-open .popover{opacity:1;transform:none;pointer-events:auto}
+			.info-open .popover .popover-bg{opacity:1}
 					.logo{
 						width:44px;
 						height:44px;
@@ -88,7 +106,7 @@
 			/* Nav / dropdown */
 			nav{position:relative;z-index:1250}
 			.header-nav{display:flex;gap:18px;align-items:center}
-			.header-nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px}
+			.header-nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:700}
 			.header-nav a:hover{background:rgba(255,255,255,0.03)}
 			/* dropdown/menu styles removed — header-nav is used instead */
 
@@ -97,25 +115,33 @@
 								/* translucent hero so page background image is visible */
 								background: linear-gradient(180deg, rgba(4,20,30,0.20), rgba(4,20,30,0.16));
 								border-radius:var(--radius);
-								padding:36px 36px;
+								padding:20px 22px; /* reduced padding to free horizontal space */
 								/* subtle transparent shadow contour */
 								box-shadow:0 20px 60px rgba(2,6,23,0.45), inset 0 0 0 1px rgba(255,255,255,0.02);
 								backdrop-filter: blur(6px);
-								width:720px; /* reduced main hero width */
-								min-height:460px; /* a bit more room so panel/buttons aren't cut */
+								width:100%;
+								max-width:1100px; /* allow hero to expand more horizontally */
+								min-height:260px; /* reduce vertical emphasis further */
 								height:auto;
 								display:block;
 								overflow:visible; /* allow children (buttons) to be fully visible */
 							}
 							.hero-grid{
 								display:grid;
-								grid-template-columns:1fr 260px; /* left big, right narrower */
-								gap:12px;
-								align-items:stretch; /* ensure both columns match height */
+								grid-template-columns:2fr 360px; /* more horizontal room for left content and wider panel */
+								gap:28px;
+								align-items:center; /* center vertically */
+								justify-items:center; /* center child items horizontally within each column */
 								width:100%;
-								height:100%;
 								box-sizing:border-box;
 							}
+
+							/* Welcome block */
+							.welcome{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+							.welcome h2{margin:0;font-size:1.6rem}
+							.welcome .lead{margin-bottom:0}
+							.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+							.card{padding:12px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04)}
 							/* left column fills height and centers slides vertically */
 							.hero-grid > .hero-left{display:flex;align-items:center;justify-content:center;height:100%}
 							.panel{height:100%}
@@ -131,9 +157,9 @@
 
 			/* Right column */
 			.panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;justify-content:center;align-items:center}
-			.panel .cta{width:100%;display:flex;flex-direction:column;gap:14px;align-items:center}
+			.panel .cta{width:100%;display:flex;flex-direction:column;gap:12px;align-items:center}
 			/* buttons occupy full inner width but keep a max to avoid touching edges */
-			.panel .cta .btn{width:100%;max-width:240px;padding:12px 18px}
+			.panel .cta .btn{width:100%;max-width:320px;padding:12px 18px}
 			.cta{display:flex;flex-direction:column;gap:10px}
 			.btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#06293a;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
 			.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
@@ -190,52 +216,45 @@
 					<a href="galeria.html">Galería</a>
 					<a href="tienda.html">Tienda</a>
 				</nav>
+
+				<!-- Info quick popover -->
+				<div class="info-wrap">
+					<button class="info-icon" id="infoBtn" aria-haspopup="true" aria-expanded="false" aria-controls="infoPopover">!</button>
+					<div class="popover" id="infoPopover" role="dialog" aria-hidden="true">
+						<div class="popover-bg" aria-hidden="true"></div>
+						<div class="popover-content">
+							<ul>
+								<li><strong>Inmersiones al océano</strong><span> Paseo guiado por las playas de Granada</span></li>
+								<li><strong>Especialistas</strong><span> Instructores certificados para acompañarte</span></li>
+								<li><strong>Seguridad</strong><span> Protocolos y equipo para tu tranquilidad</span></li>
+								<li><strong>Recursos</strong><span> Material y trajes disponibles en la tienda</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</header>
 
 			
-				<div class="hero-grid">
-								<div class="hero-left">
-									<div class="slider" aria-roledescription="carousel">
-										<div class="slides">
-											<section class="slide" data-index="0">
-												<div>
-													<div class="kicker">Bienvenido a Inmersiones Montalbán!!!</div>
-													<h2>Explora y acercate más al mundo del oceano por las playas de Granada</h2>
-													<p class="lead">Tenemos trajes y accesorios para comprar en nuestra Tienda, además de actividades de inmersión en las playas de Granada. Anímate!!!</p>
-												</div>
-											</section>
-
-											<section class="slide" data-index="1">
-												<div class="cards">
-													<div class="card"><h4>Inmersiones al océano</h4><p>Paseo por los paisajes marinos de Granada guiados con un instructor</p></div>
-													<div class="card"><h4>Especialistas</h4><p>Tenemos a los mejores instructores de la comunidad para mostrarte la inmensidad del océano</p></div>
-													<div class="card"><h4>Seguridad</h4><p>Prevalecemos la seguridad ante todo cuando nos movemos en el medio acuatico</p></div>
-													<div class="card"><h4>Recursos</h4><p>Si no tienes recursos para realizar las actividades nosotros te lo proporcionamos</p></div>
-												</div>
-											</section>
-
-											<section class="slide" data-index="2">
-												<div>
-													<p class="hint"><strong>PD:</strong> Para más información llamanos y te atenderemos lo más rapido posible</p>
-												</div>
-											</section>
-										</div>
-
-										<button class="nav prev" aria-label="Anterior">‹</button>
-										<button class="nav next" aria-label="Siguiente">›</button>
-										<div class="dots" role="tablist"></div>
-									</div>
+					<div class="hero-grid">
+						<div class="hero-left">
+							<div class="welcome" aria-label="Bienvenida">
+								<div>
+									<div class="kicker">Bienvenido a Inmersiones Montalbán</div>
+									<h2>Explora y acércate al mundo del océano desde las playas de Granada</h2>
+									<p class="lead">Tenemos trajes y accesorios en nuestra Tienda y actividades guiadas para todos los niveles. ¡Anímate a descubrirlo!</p>
 								</div>
-
-					<aside class="panel" aria-label="Acciones rápidas">
-						<div class="cta">
-							<button class="btn" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">Ver planes</button>
-							<button class="btn ghost" onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})">Ver galería</button>
+							</div>
 						</div>
-						<hr style="opacity:.06;margin:8px 0;border:none;height:1px;width:80%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent)" />
-						<div style="font-size:.95rem;color:var(--muted);text-align:center"><strong>¿Nuevo?</strong><div style="margin-top:8px">Empieza por <a href="#puntos" style="color:var(--accent);text-decoration:none">Puntos de inmersión</a> para practicar conceptos en pequeñas sesiones.</div></div>
-					</aside>
-				</div>
+
+						<aside class="panel" aria-label="Acciones rápidas">
+							<div class="cta">
+								<button class="btn" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">Ver planes</button>
+								<button class="btn ghost" onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})">Ver galería</button>
+							</div>
+							<hr style="opacity:.06;margin:8px 0;border:none;height:1px;width:80%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent)" />
+							<div style="font-size:.95rem;color:var(--muted);text-align:center"><strong>¿Nuevo?</strong><div style="margin-top:8px">Empieza por <a href="#puntos" style="color:var(--accent);text-decoration:none">Puntos de inmersión</a> para practicar conceptos en pequeñas sesiones.</div></div>
+						</aside>
+					</div>
 
 				
 
@@ -290,7 +309,22 @@
 											// make slider focusable
 											slider.tabIndex = 0;
 										})();
-			})();
+									})();
+
+									// Info popover accessibility: toggle aria attributes and keyboard handling
+									(function(){
+										const btn = document.getElementById('infoBtn');
+										const pop = document.getElementById('infoPopover');
+										if(!btn || !pop) return;
+										function open(){ btn.setAttribute('aria-expanded','true'); pop.setAttribute('aria-hidden','false'); document.documentElement.classList.add('info-open'); }
+										function close(){ btn.setAttribute('aria-expanded','false'); pop.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('info-open'); }
+										btn.addEventListener('click', ()=>{ const expanded = btn.getAttribute('aria-expanded') === 'true'; if(expanded) close(); else open(); });
+										btn.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); } if(e.key === 'Escape') close(); });
+										// close on Escape when focus inside popover
+										pop.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') { close(); btn.focus(); } });
+										// close when clicking outside
+										document.addEventListener('click', (e)=>{ if(!btn.contains(e.target) && !pop.contains(e.target)) close(); });
+									})();
 		</script>
 	</body>
 </html>
