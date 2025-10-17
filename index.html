@@ -47,10 +47,10 @@
 
 			/* Header */
 							header{
-								display:flex;
-								align-items:center;
-								justify-content:space-between;
-								gap:16px;
+												display:flex;
+												align-items:center;
+												justify-content:flex-start; /* let children flow left-to-right */
+												gap:16px;
 								/* stretch the header across the top */
 								position:fixed;
 								top:0;
@@ -70,6 +70,9 @@
 				text-decoration:none;
 				color:var(--text);
 			}
+
+			/* push navigation to the right side of the header */
+			.header-nav{margin-left:auto}
 
 			/* Info icon + popover (hover to reveal quick items) */
 			.info-wrap{position:relative;display:flex;align-items:center;gap:8px}
