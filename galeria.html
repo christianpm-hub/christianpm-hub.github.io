@@ -13,6 +13,34 @@
     main{max-width:1100px;margin:0 auto;padding-top:28px}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
     .plan{background:rgba(255,255,255,0.03);padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.04)}
+    .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 900px;
+  margin: 30px auto;
+}
+
+.photo {
+  aspect-ratio: 1 / 1; /* Hace las imágenes cuadradas */
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Recorta sin deformar */
+  display: block;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.photo-img:hover {
+  transform: scale(1.05);
+}
+
+  
   </style>
 </head>
 <body>
@@ -29,75 +57,28 @@
   </header>
   <main>
     <h1>Galería</h1>
-    <p style="color:#AFCBD6">Fotos de inmersiones y actividades. (Imágenes generadas de ejemplo)</p>
+    <p style="color:#AFCBD6">Fotos de inmersiones y actividades.</p>
     <div class="grid">
-      <div class="photo">
-        <!-- Diver SVG 1 -->
-        <svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-          <rect width="100%" height="100%" fill="#05343b" rx="8"/>
-          <g transform="translate(12,10)" fill="#9fd4c3">
-            <circle cx="30" cy="24" r="10" fill="#AEEAD7"/>
-            <rect x="22" y="34" width="16" height="28" rx="6"/>
-            <path d="M40 48 Q75 36 120 30" stroke="#7ec7b8" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <circle cx="128" cy="26" r="4" fill="#7ec7b8"/>
-          </g>
-        </svg>
-      </div>
-      <div class="photo">
-        <!-- Diver SVG 2 -->
-        <svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-          <rect width="100%" height="100%" fill="#062b36" rx="8"/>
-          <g transform="translate(18,14)" fill="#9fd4c3">
-            <circle cx="18" cy="18" r="9" fill="#AEEAD7"/>
-            <path d="M26 28 L36 44 L58 50" stroke="#7ec7b8" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path d="M60 40 Q90 34 130 30" stroke="#7ec7b8" stroke-width="6" fill="none" stroke-linecap="round"/>
-          </g>
-        </svg>
-      </div>
-      <div class="photo">
-        <!-- Diver SVG 3 -->
-        <svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-          <rect width="100%" height="100%" fill="#05343b" rx="8"/>
-          <g transform="translate(14,12)" fill="#9fd4c3">
-            <circle cx="26" cy="20" r="8" fill="#AEEAD7"/>
-            <path d="M34 28 Q70 44 110 46" stroke="#7ec7b8" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <circle cx="116" cy="48" r="3" fill="#7ec7b8"/>
-          </g>
-        </svg>
-      </div>
-      <div class="photo">
-        <!-- Diver SVG 4 -->
-        <svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-          <rect width="100%" height="100%" fill="#062b36" rx="8"/>
-          <g transform="translate(16,10)" fill="#9fd4c3">
-            <circle cx="22" cy="22" r="9" fill="#AEEAD7"/>
-            <path d="M30 34 Q60 40 98 36" stroke="#7ec7b8" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <path d="M100 36 L128 24" stroke="#7ec7b8" stroke-width="5" stroke-linecap="round"/>
-          </g>
-        </svg>
-      </div>
-      <div class="photo">
-        <!-- Diver SVG 5 -->
-        <svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-          <rect width="100%" height="100%" fill="#05343b" rx="8"/>
-          <g transform="translate(12,14)" fill="#9fd4c3">
-            <circle cx="28" cy="18" r="8" fill="#AEEAD7"/>
-            <path d="M36 28 Q70 34 110 32" stroke="#7ec7b8" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <circle cx="118" cy="34" r="4" fill="#7ec7b8"/>
-          </g>
-        </svg>
-      </div>
-      <div class="photo">
-        <!-- Diver SVG 6 -->
-        <svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-          <rect width="100%" height="100%" fill="#062b36" rx="8"/>
-          <g transform="translate(18,12)" fill="#9fd4c3">
-            <circle cx="20" cy="20" r="9" fill="#AEEAD7"/>
-            <path d="M28 32 Q58 44 96 48" stroke="#7ec7b8" stroke-width="6" fill="none" stroke-linecap="round"/>
-          </g>
-        </svg>
-      </div>
-    </div>
+  <div class="photo">
+    <img src="https://imgs.search.brave.com/o7-HKf8okn5WwjI1gXfJ1x7yPQ3cuy_A1zvDGPKpR5c/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9kZWZp/bmljaW9uLmRlL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDEyLzAz/L2J1em8uanBn" alt="Diver 1" class="photo-img">
+  </div>
+  <div class="photo">
+    <img src="https://imgs.search.brave.com/r41xeMWY2h2YxOm200GbS5QRA8uN7iYuqpN9nt7Sg90/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvODgz/MTEwNjk4L2VzL2Zv/dG8vZnJlZWRpdmVy/cy5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9bThjNDA2ckdr/TkNTNmRMOHZoYWEt/QkxLZkswLWYyVHR5/NFo0M1VTaWFVOD0" alt="Diver 2" class="photo-img">
+  </div>
+  <div class="photo">
+    <img src="https://imgs.search.brave.com/0EzRpZBnCXn1aleJTVOzevzeVa7-UceFXPfkZi7MNTA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMucHV6emxlZmFj/dG9yeS5jb20vcHV6/emxlLzUwMS82ODcv/dGh1bWIuanBn" alt="Diver 3" class="photo-img">
+  </div>
+  <div class="photo">
+    <img src="https://imgs.search.brave.com/YrvKfadN4eG07gnROIj0Abab7E9teNNEZVlJv-2E6jk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9ibG9n/LnBhZGkuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDE3LzA1/L2ZyZWVkaXZlcnMt/YXQtcmVlZi01NTB4/MzQ3LmpwZw" alt="Diver 4" class="photo-img">
+  </div>
+  <div class="photo">
+    <img src="https://imgs.search.brave.com/C4OuLWufjhouevWRcFq-EXEhrgLWodGnGRs9VrfDfrg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxMy8w/Mi8wOS8wNC8zMy9z/Y3ViYS1kaXZpbmct/Nzk2MDZfNjQwLmpw/Zw" alt="Diver 5" class="photo-img">
+  </div>
+  <div class="photo">
+    <img src="https://imgs.search.brave.com/ohVc661FmVjomAkLYI0j7KXudLAkncNJBBJhf_CC6Yg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjEy/MjU4NDE2L2VzL2Zv/dG8vYnV6b3MtZGUt/Y29ydGVzJUMzJUFE/YS5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Mm9DeEhjU2Vw/QmVnWnBuRWFTNXd3/MFlIWUQwUVA0MW9F/aGl0ajJodDUyZz0" alt="Diver 6" class="photo-img">
+  </div>
+</div>
+
   </main>
 </body>
 </html>
