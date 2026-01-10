@@ -1,340 +1,179 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Inmersiones Montalbán</title>
-		<meta name="description" content="Página moderna y didáctica con menú desplegable: Inicio, Sobre nosotros, Precios, Puntos de inmersión, Galería, Tienda." />
-		<style>
-			:root{
-				--accent: #6EE7B7;
-				--accent-2: #60A5FA;
-				--glass: rgba(255,255,255,0.08);
-				--glass-2: rgba(255,255,255,0.06);
-				--text: #E6EEF3;
-				--muted: rgba(230,238,243,0.7);
-				--radius: 12px;
-				--max-width: 1100px;
-			}
-			*, *::before, *::after{box-sizing:border-box}
-			html,body{height:100%;}
-					body{
-						margin:0;
-						font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-						color:var(--text);
-						-webkit-font-smoothing:antialiased;
-						background: radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 60%),
-									url('assets/bg.jpg'); /* local image (replace or add assets/bg.jpg) */
-						background-image: radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 60%), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80');
-						background-size: cover;
-						background-position: center;
-						background-attachment: fixed;
-						min-height:100vh;
-						display:flex;
-						align-items:center;
-						justify-content:center; /* center page content */
-						/* increase top padding so fixed header doesn't overlap content */
-						padding:110px 32px 32px;
-					}
-			.container{
-				width:100%;
-				max-width:1300px; /* allow even wider center area so layout is more horizontal */
-				margin:0 auto;
-				display:flex;
-				flex-direction:column;
-				align-items:center;
-			}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zapatillas UrbanX | Landing Oficial</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+    body { color: #111; background: #f4f4f4; line-height: 1.6; }
 
-			/* Header */
-							header{
-												display:flex;
-												align-items:center;
-												justify-content:flex-start; /* let children flow left-to-right */
-												gap:16px;
-								/* stretch the header across the top */
-								position:fixed;
-								top:0;
-								left:0;
-								right:0;
-								width:100%;
-								padding:14px 28px;
-								background:linear-gradient(180deg, rgba(4,20,30,0.8), rgba(4,20,30,0.6));
-								border-radius:0;
-								box-shadow:0 8px 30px rgba(2,6,23,0.45);
-								z-index:1400; /* keep header above other content */
-							}
-			.brand{
-				display:flex;
-				align-items:center;
-				gap:12px;
-				text-decoration:none;
-				color:var(--text);
-			}
+    /* CABECERA */
+    header { background: #000; color: #fff; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { font-size: 1.6rem; }
+    nav a { color: #fff; margin-left: 20px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
 
-			/* push navigation to the right side of the header */
-			.header-nav{margin-left:auto}
+    /* HERO */
+    .hero { background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url('https://images.unsplash.com/photo-1542291026-7eec264c27ff'); background-size: cover; background-position: center; color: #fff; padding: 110px 40px; text-align: center; }
+    .hero h2 { font-size: 3rem; margin-bottom: 20px; }
+    .hero p { font-size: 1.2rem; margin-bottom: 30px; }
 
-			/* Info icon + popover (hover to reveal quick items) */
-			.info-wrap{position:relative;display:flex;align-items:center;gap:8px}
-			.info-icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06293a;border:0;cursor:pointer;font-weight:800;box-shadow:0 6px 16px rgba(2,6,23,0.25)}
-			.info-icon:focus{outline:2px solid rgba(110,231,183,0.25);outline-offset:3px}
-			.popover{position:absolute;right:0;top:calc(100% + 10px);min-width:240px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:10px;padding:12px;box-shadow:0 12px 36px rgba(2,6,23,0.45);border:1px solid rgba(255,255,255,0.04);opacity:0;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease;pointer-events:none;z-index:1500}
-			/* popover visibility is controlled via JS for consistent backdrop handling */
-			.info-open .popover{opacity:1;transform:none;pointer-events:auto}
-			.popover ul{margin:0;padding:0;list-style:none}
-			.popover li{padding:8px 6px;border-bottom:1px solid rgba(255,255,255,0.03);color:var(--muted);font-size:0.95rem}
-			.popover li strong{color:var(--text);display:block;margin-bottom:4px}
-			.popover li:last-child{border-bottom:0}
-			/* Localized dark background behind the popover (only covers popover area) */
-			.popover{position:absolute;right:0;top:calc(100% + 10px);min-width:240px;background:transparent;border-radius:10px;padding:0;opacity:0;transform:translateY(-6px);transition:opacity .18s ease,transform .18s ease;pointer-events:none;z-index:1500}
-			/* the dark panel sits behind the text content */
-			.popover .popover-bg{position:absolute;inset:0;background:rgba(2,6,23,0.85);border-radius:10px;z-index:0;opacity:0;transition:opacity .18s ease}
-			.popover .popover-content{position:relative;z-index:1;padding:12px;background:transparent;color:var(--muted)}
-			.info-open .popover{opacity:1;transform:none;pointer-events:auto}
-			.info-open .popover .popover-bg{opacity:1}
-					.logo{
-						width:44px;
-						height:44px;
-				border-radius:10px;
-				display:grid;
-				place-items:center;
-				background:linear-gradient(135deg,var(--accent),var(--accent-2));
-				box-shadow:0 6px 18px rgba(0,0,0,0.35);
-				font-weight:700;
-				color:#07324a;
-			}
-			.brand h1{font-size:1.05rem;margin:0}
-			.brand p{margin:0;font-size:0.78rem;color:var(--muted)}
+    .cta-btn { background: #ff3c00; color: #fff; padding: 15px 30px; font-size: 1.1rem; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; }
+    .cta-btn:hover { background: #e63600; }
 
-			/* Nav / dropdown */
-			nav{position:relative;z-index:1250}
-			.header-nav{display:flex;gap:18px;align-items:center}
-			.header-nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:700}
-			.header-nav a:hover{background:rgba(255,255,255,0.03)}
-			/* dropdown/menu styles removed — header-nav is used instead */
+    /* FEATURES */
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; padding: 60px 40px; background: #fff; }
+    .feature { background: #f9f9f9; padding: 30px; border-radius: 10px; text-align: center; }
 
-			/* Hero */
-							.hero{
-								/* translucent hero so page background image is visible */
-								background: linear-gradient(180deg, rgba(4,20,30,0.20), rgba(4,20,30,0.16));
-								border-radius:var(--radius);
-								padding:20px 22px; /* reduced padding to free horizontal space */
-								/* subtle transparent shadow contour */
-								box-shadow:0 20px 60px rgba(2,6,23,0.45), inset 0 0 0 1px rgba(255,255,255,0.02);
-								backdrop-filter: blur(6px);
-								width:100%;
-								max-width:1100px; /* allow hero to expand more horizontally */
-								min-height:260px; /* reduce vertical emphasis further */
-								height:auto;
-								display:block;
-								overflow:visible; /* allow children (buttons) to be fully visible */
-							}
-							.hero-grid{
-								display:grid;
-								grid-template-columns:1fr 420px; /* slightly narrower left column for tighter layout */
-								gap:26px;
-								align-items:center; /* center vertically */
-								justify-items:center; /* center child items horizontally within each column */
-								width:100%;
-								box-sizing:border-box;
-								max-width:1100px; /* avoid hero growing too wide on very large screens */
-								margin:0 auto;
-							}
+    /* PRODUCTOS */
+    .products { padding: 70px 40px; background: #f4f4f4; }
+    .products h2 { text-align: center; margin-bottom: 40px; font-size: 2.2rem; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .product { background: #fff; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .product img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+    .product h3 { margin-bottom: 10px; }
+    .price { font-size: 1.3rem; font-weight: bold; color: #ff3c00; margin-bottom: 15px; }
 
-							/* Welcome block */
-							.welcome{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;max-width:600px;padding:12px 16px; /* match panel padding */
-								/* match panel translucent background and border */
-								background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-								border-radius:12px;
-								border:1px solid rgba(255,255,255,0.05);
-							}
-							.welcome h2{margin:0;font-size:1.6rem}
-							.welcome .lead{margin-bottom:0}
-							.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
-							.card{padding:12px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06)}
-							/* left column fills height and centers slides vertically */
-							.hero-grid > .hero-left{display:flex;align-items:center;justify-content:center;height:100%}
-							.panel{height:100%}
-							.slider, .slides{height:100%}
-			.kicker{color:var(--accent);font-weight:700;font-size:.95rem}
-			h2{margin:6px 0 12px;font-size:2rem}
-			p.lead{color:var(--muted);margin:0 0 18px;line-height:1.5}
+    /* CTA FINAL */
+    .cta-section { background: #111; color: #fff; padding: 70px 40px; text-align: center; }
+    .cta-section h2 { font-size: 2rem; margin-bottom: 20px; }
 
-			.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-			.card{background:rgba(255,255,255,0.04);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04)}
-			.card h4{margin:6px 0;color:var(--text)}
-			.card p{margin:0;color:var(--muted);font-size:.92rem}
+    /* FOOTER */
+    footer { background: #000; color: #aaa; padding: 40px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 30px; }
+    footer h4 { color: #fff; margin-bottom: 10px; }
+    footer a { color: #aaa; text-decoration: none; display: block; margin-bottom: 5px; }
+    footer a:hover { color: #fff; }
+    .copyright { text-align: center; font-size: 0.85rem; border-top: 1px solid #333; padding-top: 20px; }
 
-			/* Right column */
-			.panel{background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;justify-content:center;align-items:center}
-			.panel .cta{width:100%;display:flex;flex-direction:column;gap:12px;align-items:center}
-			/* buttons occupy full inner width but keep a max to avoid touching edges */
-			.panel .cta .btn{width:100%;max-width:320px;padding:12px 18px}
-			.cta{display:flex;flex-direction:column;gap:10px}
-			.btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#06293a;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
-			.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+    @media (max-width: 600px) {
+      .hero h2 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
 
-			/* Sections */
-			section{margin-top:20px;padding:18px;background:rgba(0,0,0,0.18);border-radius:10px}
-			section h3{margin-top:0}
+  <!-- CABECERA -->
+  <header>
+    <h1>UrbanX</h1>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#features">Características</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#">Ofertas</a>
+    </nav>
+  </header>
 
-			/* Responsive */
-			@media (max-width:980px){
-				.hero-grid{grid-template-columns:1fr}
-				.dropdown{right:8px;left:8px}
-			}
-			@media (max-width:560px){
-				header{flex-direction:column;align-items:flex-start;gap:12px;left:16px;right:16px;transform:none;width:auto}
-				/* increase top padding on small screens so content isn't hidden under taller header */
-				body{padding-top:160px}
-			}
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <h2>Zapatillas que marcan tu ritmo</h2>
+    <p>Comodidad, diseño urbano y calidad premium en cada paso.</p>
+    <a href="#productos" class="cta-btn">Ver productos</a>
+  </section>
 
-			/* Small, didactic helper */
-			.hint{font-size:.9rem;color:var(--muted);margin-top:8px}
-			/* Slider styles */
-			.slider{position:relative;width:100%;height:100%;overflow:hidden}
-			.slides{height:100%;display:flex;transition:transform .36s ease}
-			.slide{min-width:100%;padding:12px;box-sizing:border-box;display:flex;align-items:center;justify-content:center}
-			.slide > div{background:transparent;padding:8px;border-radius:8px}
-			.slide .cards{grid-template-columns:1fr 1fr}
-			.nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.35);border:0;color:var(--text);width:44px;height:44px;border-radius:8px;cursor:pointer}
-			.nav.prev{left:10px}
-			.nav.next{right:10px}
-			.dots{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;gap:8px}
-			.dots button{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.18);border:0;cursor:pointer}
-			.dots button.active{background:linear-gradient(180deg,var(--accent),var(--accent-2))}
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="feature">
+      <h3>Comodidad Total</h3>
+      <p>Plantillas ergonómicas para uso diario.</p>
+    </div>
+    <div class="feature">
+      <h3>Diseño Urbano</h3>
+      <p>Estilo moderno adaptable a cualquier look.</p>
+    </div>
+    <div class="feature">
+      <h3>Materiales Premium</h3>
+      <p>Alta resistencia y transpirabilidad.</p>
+    </div>
+  </section>
 
-	/* Backdrop removed — header-nav is used instead */
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<header>
-				<a href="#inicio" class="brand" aria-label="Ir a inicio">
-					<div class="logo">IM</div>
-					<div>
-						<h1>Inmersiones Montalbán</h1>
-						<p>Inmersión en las playas de Granada</p>
-					</div>
-				</a>
+  <!-- PRODUCTOS -->
+  <section class="products" id="productos">
+    <h2>Nuestras Zapatillas</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa" alt="Zapatilla UrbanX Air" />
+        <h3>UrbanX Air</h3>
+        <div class="price">89,99 €</div>
+        <a href="#" class="cta-btn">Comprar</a>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782" alt="Zapatilla UrbanX Street" />
+        <h3>UrbanX Street</h3>
+        <div class="price">79,99 €</div>
+        <a href="#" class="cta-btn">Comprar</a>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77" alt="Zapatilla UrbanX Pro" />
+        <h3>UrbanX Pro</h3>
+        <div class="price">99,99 €</div>
+        <a href="#" class="cta-btn">Comprar</a>
+      </div>
+    </div>
+  </section>
 
-				<nav class="header-nav" aria-label="Navegación principal">
-					<a href="index.html">Inicio</a>
-					<a href="sobre-nosotros.html">Sobre nosotros</a>
-					<a href="precios.html">Precios</a>
-					<a href="puntos.html">Puntos de inmersión</a>
-					<a href="galeria.html">Galería</a>
-					<a href="tienda.html">Tienda</a>
-				</nav>
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <h2>Da el siguiente paso hoy</h2>
+    <p>Envíos gratuitos y devoluciones fáciles.</p><br />
+    <a href="#" class="cta-btn">Comprar ahora</a>
+  </section>
 
-				<!-- Info quick popover -->
-				<div class="info-wrap">
-					<button class="info-icon" id="infoBtn" aria-haspopup="true" aria-expanded="false" aria-controls="infoPopover">!</button>
-					<div class="popover" id="infoPopover" role="dialog" aria-hidden="true">
-						<div class="popover-bg" aria-hidden="true"></div>
-						<div class="popover-content">
-							<ul>
-								<li><strong>Inmersiones al océano</strong><span> Paseo guiado por las playas de Granada</span></li>
-								<li><strong>Especialistas</strong><span> Instructores certificados para acompañarte</span></li>
-								<li><strong>Seguridad</strong><span> Protocolos y equipo para tu tranquilidad</span></li>
-								<li><strong>Recursos</strong><span> Material y trajes disponibles en la tienda</span></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</header>
+  <!-- FAQ -->
+  <section class="products" id="faq" style="background:#fff;">
+    <h2>Preguntas frecuentes</h2>
+    <div class="product-grid">
+      <div class="product" style="text-align:left;">
+        <h3>¿Cuánto tardan los envíos?</h3>
+        <p>Los envíos tardan entre 24 y 72 horas laborables dentro de España.</p>
+      </div>
+      <div class="product" style="text-align:left;">
+        <h3>¿Puedo devolver mis zapatillas?</h3>
+        <p>Sí, dispones de 30 días para realizar devoluciones gratuitas.</p>
+      </div>
+      <div class="product" style="text-align:left;">
+        <h3>¿Las zapatillas tallan normal?</h3>
+        <p>Sí, nuestras zapatillas utilizan tallaje europeo estándar.</p>
+      </div>
+      <div class="product" style="text-align:left;">
+        <h3>¿Qué métodos de pago aceptáis?</h3>
+        <p>Aceptamos tarjeta, PayPal y pago contra reembolso.</p>
+      </div>
+    </div>
+  </section>
 
-			
-					<div class="hero-grid">
-						<div class="hero-left">
-							<div class="welcome" aria-label="Bienvenida">
-								<div>
-									<div class="kicker">Bienvenido a Inmersiones Montalbán</div>
-									<h2>Explora y acércate al mundo del océano desde las playas de Granada</h2>
-									<p class="lead">Tenemos trajes y accesorios en nuestra Tienda y actividades guiadas para todos los niveles. ¡Anímate a descubrirlo!</p>
-								</div>
-							</div>
-						</div>
+  <!-- FOOTER -->
+  <footer id="contacto">
+    <div class="footer-grid">
+      <div>
+        <h4>UrbanX</h4>
+        <p>Zapatillas urbanas diseñadas para tu ritmo de vida.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>Email: contacto@urbanx.com</p>
+        <p>Tel: +34 600 123 456</p>
+        <p>Madrid, España</p>
+      </div>
+      <div>
+        <h4>Enlaces</h4>
+        <a href="#">Sobre nosotros</a>
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Política de privacidad</a>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">TikTok</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 UrbanX. Todos los derechos reservados.
+    </div>
+  </footer>
 
-						<aside class="panel" aria-label="Acciones rápidas">
-							<div class="cta">
-								<a href="precios.html" > <button class="btn" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">Ver precios</button></a>
-								<a href="galeria.html"> <button class="btn ghost" onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})">Consultar galería</button></a>
-							</div>
-							<hr style="opacity:.06;margin:8px 0;border:none;height:1px;width:80%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent)" />
-							<div style="font-size:.95rem;color:var(--muted);text-align:center"><strong>¿Nuevo?</strong><div style="margin-top:8px">Empieza por <a href="puntos.html" style="color:var(--accent);text-decoration:none">Puntos de inmersión</a> para practicar conceptos en pequeñas sesiones.</div></div>
-						</aside>
-					</div>
-
-				
-
-		<script>
-				// Smooth scroll for internal links (anchors on this page) and slider below
-			(function(){
-
-								// Smooth scroll for internal links (anchors on this page)
-								document.querySelectorAll('a[href^="#"]').forEach(a=>{
-									a.addEventListener('click', function(e){
-										const href = this.getAttribute('href');
-										if(href.length > 1){
-											const el = document.querySelector(href);
-											if(el){ el.scrollIntoView({behavior:'smooth'}); e.preventDefault(); }
-										}
-									});
-								});
-
-										// Simple slider/carousel
-										(function(){
-											const slider = document.querySelector('.slider');
-											if(!slider) return;
-											const slides = slider.querySelectorAll('.slide');
-											const track = slider.querySelector('.slides');
-											const prev = slider.querySelector('.nav.prev');
-											const next = slider.querySelector('.nav.next');
-											const dotsEl = slider.querySelector('.dots');
-											let index = 0;
-
-											function go(i){
-												index = (i + slides.length) % slides.length;
-												track.style.transform = `translateX(${-index * 100}%)`;
-												[...dotsEl.children].forEach((b,bi)=>b.classList.toggle('active', bi===index));
-											}
-
-											slides.forEach((s, i)=>{
-												const b = document.createElement('button');
-												b.setAttribute('aria-label', 'Ir a slide '+(i+1));
-												b.addEventListener('click', ()=>go(i));
-												dotsEl.appendChild(b);
-											});
-											go(0);
-
-											prev.addEventListener('click', ()=>go(index-1));
-											next.addEventListener('click', ()=>go(index+1));
-
-											// keyboard left/right
-											slider.addEventListener('keydown', (e)=>{
-												if(e.key === 'ArrowLeft') go(index-1);
-												if(e.key === 'ArrowRight') go(index+1);
-											});
-											// make slider focusable
-											slider.tabIndex = 0;
-										})();
-									})();
-
-									// Info popover accessibility: toggle aria attributes and keyboard handling
-									(function(){
-										const btn = document.getElementById('infoBtn');
-										const pop = document.getElementById('infoPopover');
-										if(!btn || !pop) return;
-										function open(){ btn.setAttribute('aria-expanded','true'); pop.setAttribute('aria-hidden','false'); document.documentElement.classList.add('info-open'); }
-										function close(){ btn.setAttribute('aria-expanded','false'); pop.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('info-open'); }
-										btn.addEventListener('click', ()=>{ const expanded = btn.getAttribute('aria-expanded') === 'true'; if(expanded) close(); else open(); });
-										btn.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); } if(e.key === 'Escape') close(); });
-										// close on Escape when focus inside popover
-										pop.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') { close(); btn.focus(); } });
-										// close when clicking outside
-										document.addEventListener('click', (e)=>{ if(!btn.contains(e.target) && !pop.contains(e.target)) close(); });
-									})();
-		</script>
-	</body>
+</body>
 </html>

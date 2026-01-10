@@ -1,70 +1,13 @@
-Hazme una pagina con una cabecera con un menu desplegable de 6 entradas, que sean inicio, sobre nosotros, precios, puntos de inmersion, galeria y tienda. Ponle una imagen en el fondo, y que el diseño sea muy moderno y didáctico.
-Quitame las descripciones y cuadrados de "sobre nosotros", "precios", "Puntos de inmersion", "Galeria" y "Tienda".
-las secciones didacticas quitamelas que ahi no pegan, y la descripcion que tiene cada una añadela a la entrada de cada pestaña.
-paginas independientes.
-ten en cuenta que esta es la pagina que se van a encontrar nada mas entrar, los contenedores de "inmersion al oceano", "especialistas", "seguridad", "recursos", y "PD" añademelos a la pagina de sobre mi en el menu desplegable.
-que las paginas de cada entrada del menu desplegable sean como esta misma pero que solo cambie el contenido.
-el bloque que tiene "Bienvenido a Inmersiones Montalbán!!!
-Explora y acercate más al mundo del oceano por las playas de Granada
-Tenemos trajes y accesorios para comprar en nuestra Tienda, además de actividades de inmersión en las playas de Granada. Anímate!!!
+1- Hazme una pagina web sobre zapatillas con una cabecera, 
+un call to action, un pie de pagina, que sea una landing page
 
-Inmersiones al océano
-Paseo por los paisajes marinos de Granada guiados con un instructor
+2- pon una seccion de productos con fotos de zapatillas y sus precios, pon mas entradas en la cabecera, 
+y pon cosas de contacto y copyright y 
+demás en el pie de pagina, como una pagina real
 
-Especialistas
-Tenemos a los mejores instructores de la comunidad para mostrarte la inmensidad del océano
+3-en productos has puesto imagenes pero no de zapatillas, cambialas
 
-Seguridad
-Prevalecemos la seguridad ante todo cuando nos movemos en el medio acuatico
+4- haz que las fotos tengan el mismo tamaño
 
-Recursos
-Si no tienes recursos para realizar las actividades nosotros te lo proporcionamos
-
-PD: Para más información llamanos y te antenderemos lo más rapido posible" quitalo de la pagina de inicio y ponlo en la pagina de entrada de sobre nosotros.
-lo de quitar las duplicadas si, las anclas de momento no.
-
-
-Voy a crear las páginas solicitadas (Sobre nosotros, Precios, Puntos, Galería, Tienda) y actualizar el enlace "Inicio" en index.html para que apunte a index.html#inicio. Resultado esperado: nuevas páginas creadas y navegación funcionando entre ellas. Primero actualizo la lista de tareas.
-
-Added 1 todo
-
-Next I'll create five new HTML files with the same header template and simple content per page: Sobre nosotros, Precios, Puntos de inmersión (with placeholder map), Galería (generate placeholder images), Tienda (simple product list). I'll create each file in the workspace. Expected outcome: navigation links work and pages follow the same template.
-
-Created sobre-nosotros.html
-
-Created precios.html
-
-Created puntos.html
-
-Created galeria.html
-
-Created tienda.html
-
-Completed (5/5) Crear páginas para el menú
-
-He creado las páginas solicitadas y aseguré que la cabecera y los enlaces coincidan con index.html.
-
-Archivos añadidos
-
-sobre-nosotros.html — descripción de la empresa y equipo.
-precios.html — lista de planes y precios orientativos.
-puntos.html — página con un placeholder de mapa y descripción de puntos de inmersión.
-galeria.html — galería con imágenes de ejemplo (placeholders indicados como "Buceador N").
-tienda.html — tienda básica con listado de artículos y botones de comprar.
-Qué revisé y decisiones
-
-Cada página reusa el mismo header/estructura para navegación consistente.
-Las imágenes de la galería son placeholders de ejemplo; si quieres que las genere con imágenes reales, puedo:
-Añadir imágenes de stock (requiere URLs o permiso para usar externas), o
-Crear gráficos SVG/placeholder más elaborados, o
-Integrar una galería con imágenes generadas (puedo generar prompts/descargar imágenes si das permiso para usar URLs externas).
-Siguientes pasos que puedo hacer ahora (elige uno o varios)
-
-Añadir un mapa interactivo en puntos.html con Leaflet (no requiere API key) y marcador de las playas (La Herradura, Almuñécar, Salobreña).
-Reemplazar los placeholders en galeria.html por imágenes reales (puedo fetch imágenes de Unsplash y añadir licencias; dime si está bien).
-Hacer que la tienda.html sea una tienda simple con un carrito básico en JS (localStorage) para añadir/quitar productos.
-Ajustar estilos para que las nuevas páginas usen exactamente la misma hoja de estilos central (extraer CSS en styles.css) y reducir duplicación.
-Verificación recomendada
-
-Abre cualquiera de las nuevas páginas en el navegador (por ejemplo sobre-nosotros.html) y prueba los enlaces del header para confirmar navegación.
-Dime qué prefieres que haga a continuación y lo aplico.
+5- por ultimo añade una seccion de 
+preguntas frecuentes antes del pie de pagina
