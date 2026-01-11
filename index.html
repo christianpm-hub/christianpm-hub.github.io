@@ -4,176 +4,332 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zapatillas UrbanX | Landing Oficial</title>
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
     body { color: #111; background: #f4f4f4; line-height: 1.6; }
 
     /* CABECERA */
-    header { background: #000; color: #fff; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+    header {
+      background: #000;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
     header h1 { font-size: 1.6rem; }
     nav a { color: #fff; margin-left: 20px; text-decoration: none; font-weight: bold; }
     nav a:hover { text-decoration: underline; }
 
     /* HERO */
-    .hero { background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url('https://images.unsplash.com/photo-1542291026-7eec264c27ff'); background-size: cover; background-position: center; color: #fff; padding: 110px 40px; text-align: center; }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+      url('https://images.unsplash.com/photo-1542291026-7eec264c27ff');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      padding: 110px 40px;
+      text-align: center;
+    }
+
     .hero h2 { font-size: 3rem; margin-bottom: 20px; }
     .hero p { font-size: 1.2rem; margin-bottom: 30px; }
 
-    .cta-btn { background: #ff3c00; color: #fff; padding: 15px 30px; font-size: 1.1rem; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; }
-    .cta-btn:hover { background: #e63600; }
+    .cta-btn {
+      background: #ff3c00;
+      color: #fff;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background: #e63600;
+      transform: scale(1.05);
+    }
 
     /* FEATURES */
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; padding: 60px 40px; background: #fff; }
-    .feature { background: #f9f9f9; padding: 30px; border-radius: 10px; text-align: center; }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 60px 40px;
+      background: #fff;
+    }
+
+    .feature {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+    }
 
     /* PRODUCTOS */
-    .products { padding: 70px 40px; background: #f4f4f4; }
-    .products h2 { text-align: center; margin-bottom: 40px; font-size: 2.2rem; }
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-    .product { background: #fff; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    .product img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+    .products {
+      padding: 70px 40px;
+      background: #f4f4f4;
+    }
+
+    .products h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.2rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .product {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    }
+
+    .product img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: transform 0.5s ease;
+    }
+
+    .product:hover img {
+      transform: scale(1.12);
+    }
+
     .product h3 { margin-bottom: 10px; }
-    .price { font-size: 1.3rem; font-weight: bold; color: #ff3c00; margin-bottom: 15px; }
+
+    .price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ff3c00;
+      margin-bottom: 15px;
+    }
 
     /* CTA FINAL */
-    .cta-section { background: #111; color: #fff; padding: 70px 40px; text-align: center; }
-    .cta-section h2 { font-size: 2rem; margin-bottom: 20px; }
+    .cta-section {
+      background: #111;
+      color: #fff;
+      padding: 70px 40px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
 
     /* FOOTER */
-    footer { background: #000; color: #aaa; padding: 40px; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 30px; }
+    footer {
+      background: #000;
+      color: #aaa;
+      padding: 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
     footer h4 { color: #fff; margin-bottom: 10px; }
     footer a { color: #aaa; text-decoration: none; display: block; margin-bottom: 5px; }
     footer a:hover { color: #fff; }
-    .copyright { text-align: center; font-size: 0.85rem; border-top: 1px solid #333; padding-top: 20px; }
+
+    .copyright {
+      text-align: center;
+      font-size: 0.85rem;
+      border-top: 1px solid #333;
+      padding-top: 20px;
+    }
+
+    /* ===== ANIMACIONES PRO ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px) scale(0.98);
+      transition: all 0.8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .reveal.visible > * {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: stagger 0.6s ease forwards;
+    }
+
+    .reveal.visible > *:nth-child(1) { animation-delay: 0.1s; }
+    .reveal.visible > *:nth-child(2) { animation-delay: 0.2s; }
+    .reveal.visible > *:nth-child(3) { animation-delay: 0.3s; }
+    .reveal.visible > *:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes stagger {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     @media (max-width: 600px) {
       .hero h2 { font-size: 2.2rem; }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- CABECERA -->
-  <header>
-    <h1>UrbanX</h1>
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#features">Características</a>
-      <a href="#productos">Productos</a>
-      <a href="#contacto">Contacto</a>
-      <a href="#">Ofertas</a>
-    </nav>
-  </header>
+<header>
+  <h1>UrbanX</h1>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#features">Características</a>
+    <a href="#productos">Productos</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#">Ofertas</a>
+  </nav>
+</header>
 
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <h2>Zapatillas que marcan tu ritmo</h2>
-    <p>Comodidad, diseño urbano y calidad premium en cada paso.</p>
-    <a href="#productos" class="cta-btn">Ver productos</a>
-  </section>
+<section class="hero reveal" id="inicio">
+  <h2>Zapatillas que marcan tu ritmo</h2>
+  <p>Comodidad, diseño urbano y calidad premium en cada paso.</p>
+  <a href="#productos" class="cta-btn">Ver productos</a>
+</section>
 
-  <!-- FEATURES -->
-  <section class="features" id="features">
-    <div class="feature">
-      <h3>Comodidad Total</h3>
-      <p>Plantillas ergonómicas para uso diario.</p>
-    </div>
-    <div class="feature">
-      <h3>Diseño Urbano</h3>
-      <p>Estilo moderno adaptable a cualquier look.</p>
-    </div>
-    <div class="feature">
-      <h3>Materiales Premium</h3>
-      <p>Alta resistencia y transpirabilidad.</p>
-    </div>
-  </section>
+<section class="features reveal" id="features">
+  <div class="feature">
+    <h3>Comodidad Total</h3>
+    <p>Plantillas ergonómicas para uso diario.</p>
+  </div>
+  <div class="feature">
+    <h3>Diseño Urbano</h3>
+    <p>Estilo moderno adaptable a cualquier look.</p>
+  </div>
+  <div class="feature">
+    <h3>Materiales Premium</h3>
+    <p>Alta resistencia y transpirabilidad.</p>
+  </div>
+</section>
 
-  <!-- PRODUCTOS -->
-  <section class="products" id="productos">
-    <h2>Nuestras Zapatillas</h2>
-    <div class="product-grid">
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa" alt="Zapatilla UrbanX Air" />
-        <h3>UrbanX Air</h3>
-        <div class="price">89,99 €</div>
-        <a href="#" class="cta-btn">Comprar</a>
-      </div>
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782" alt="Zapatilla UrbanX Street" />
-        <h3>UrbanX Street</h3>
-        <div class="price">79,99 €</div>
-        <a href="#" class="cta-btn">Comprar</a>
-      </div>
-      <div class="product">
-        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77" alt="Zapatilla UrbanX Pro" />
-        <h3>UrbanX Pro</h3>
-        <div class="price">99,99 €</div>
-        <a href="#" class="cta-btn">Comprar</a>
-      </div>
+<section class="products reveal" id="productos">
+  <h2>Nuestras Zapatillas</h2>
+  <div class="product-grid">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa">
+      <h3>UrbanX Air</h3>
+      <div class="price">89,99 €</div>
+      <a href="#" class="cta-btn">Comprar</a>
     </div>
-  </section>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782">
+      <h3>UrbanX Street</h3>
+      <div class="price">79,99 €</div>
+      <a href="#" class="cta-btn">Comprar</a>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77">
+      <h3>UrbanX Pro</h3>
+      <div class="price">99,99 €</div>
+      <a href="#" class="cta-btn">Comprar</a>
+    </div>
+  </div>
+</section>
 
-  <!-- CTA FINAL -->
-  <section class="cta-section">
-    <h2>Da el siguiente paso hoy</h2>
-    <p>Envíos gratuitos y devoluciones fáciles.</p><br />
-    <a href="#" class="cta-btn">Comprar ahora</a>
-  </section>
+<section class="cta-section reveal">
+  <h2>Da el siguiente paso hoy</h2>
+  <p>Envíos gratuitos y devoluciones fáciles.</p><br>
+  <a href="#" class="cta-btn">Comprar ahora</a>
+</section>
 
-  <!-- FAQ -->
-  <section class="products" id="faq" style="background:#fff;">
-    <h2>Preguntas frecuentes</h2>
-    <div class="product-grid">
-      <div class="product" style="text-align:left;">
-        <h3>¿Cuánto tardan los envíos?</h3>
-        <p>Los envíos tardan entre 24 y 72 horas laborables dentro de España.</p>
-      </div>
-      <div class="product" style="text-align:left;">
-        <h3>¿Puedo devolver mis zapatillas?</h3>
-        <p>Sí, dispones de 30 días para realizar devoluciones gratuitas.</p>
-      </div>
-      <div class="product" style="text-align:left;">
-        <h3>¿Las zapatillas tallan normal?</h3>
-        <p>Sí, nuestras zapatillas utilizan tallaje europeo estándar.</p>
-      </div>
-      <div class="product" style="text-align:left;">
-        <h3>¿Qué métodos de pago aceptáis?</h3>
-        <p>Aceptamos tarjeta, PayPal y pago contra reembolso.</p>
-      </div>
+<section class="products reveal" id="faq" style="background:#fff;">
+  <h2>Preguntas frecuentes</h2>
+  <div class="product-grid">
+    <div class="product" style="text-align:left;">
+      <h3>¿Cuánto tardan los envíos?</h3>
+      <p>Entre 24 y 72 horas laborables.</p>
     </div>
-  </section>
+    <div class="product" style="text-align:left;">
+      <h3>¿Puedo devolver mis zapatillas?</h3>
+      <p>Dispones de 30 días para devoluciones gratuitas.</p>
+    </div>
+    <div class="product" style="text-align:left;">
+      <h3>¿Las tallas son normales?</h3>
+      <p>Sí, tallaje europeo estándar.</p>
+    </div>
+    <div class="product" style="text-align:left;">
+      <h3>¿Métodos de pago?</h3>
+      <p>Tarjeta, PayPal y contra reembolso.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer id="contacto">
-    <div class="footer-grid">
-      <div>
-        <h4>UrbanX</h4>
-        <p>Zapatillas urbanas diseñadas para tu ritmo de vida.</p>
-      </div>
-      <div>
-        <h4>Contacto</h4>
-        <p>Email: contacto@urbanx.com</p>
-        <p>Tel: +34 600 123 456</p>
-        <p>Madrid, España</p>
-      </div>
-      <div>
-        <h4>Enlaces</h4>
-        <a href="#">Sobre nosotros</a>
-        <a href="#">Términos y condiciones</a>
-        <a href="#">Política de privacidad</a>
-      </div>
-      <div>
-        <h4>Síguenos</h4>
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">TikTok</a>
-      </div>
+<footer id="contacto" class="reveal">
+  <div class="footer-grid">
+    <div>
+      <h4>UrbanX</h4>
+      <p>Zapatillas urbanas diseñadas para tu ritmo.</p>
     </div>
-    <div class="copyright">
-      © 2026 UrbanX. Todos los derechos reservados.
+    <div>
+      <h4>Contacto</h4>
+      <p>Email: contacto@urbanx.com</p>
+      <p>Tel: +34 600 123 456</p>
+      <p>Madrid, España</p>
     </div>
-  </footer>
+    <div>
+      <h4>Enlaces</h4>
+      <a href="#">Sobre nosotros</a>
+      <a href="#">Términos</a>
+      <a href="#">Privacidad</a>
+    </div>
+    <div>
+      <h4>Síguenos</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">TikTok</a>
+    </div>
+  </div>
+  <div class="copyright">
+    © 2026 UrbanX. Todos los derechos reservados.
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>

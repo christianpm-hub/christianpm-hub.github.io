@@ -11,3 +11,6 @@ demás en el pie de pagina, como una pagina real
 
 5- por ultimo añade una seccion de 
 preguntas frecuentes antes del pie de pagina
+
+6- añadele java script para que aparezcan las secciones al bajar y 
+que al poner el raton encima de las fotos de productos se agranden un poco
