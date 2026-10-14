@@ -1,0 +1,93 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #2d3748;
+    padding: 60px 20px;
+}
+
+/* Título principal */
+h1 {
+    text-align: center;
+    color: white;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor de ejercicios */
+ul {
+    list-style: none;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Tarjetas */
+li {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Enlaces */
+li a {
+    display: block;
+    padding: 28px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #4c51bf;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Efecto al pasar el ratón */
+li:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+}
+
+li:hover a {
+    background: #4c51bf;
+    color: white;
+}
+
+/* Accesibilidad al navegar con teclado */
+li a:focus-visible {
+    outline: 3px solid #f6ad55;
+    outline-offset: -5px;
+    border-radius: 16px;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 480px) {
+    body {
+        padding: 40px 16px;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    ul {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    li a {
+        padding: 22px;
+    }
+}
