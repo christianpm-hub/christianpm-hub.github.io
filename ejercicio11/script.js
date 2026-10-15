@@ -1,15 +1,20 @@
-function numeroMayor(array) {
-    let mayor = array[0];
+function contarNumeros() {
+    let numeros = [];
 
-    for (let i = 1; i < array.length; i++) {
-        if (array[i] > mayor) {
-            mayor = array[i];
+    for (let i = 0; i < 100; i++) {
+        let num = Math.floor(Math.random() * 20) + 1;
+        numeros.push(num);
+    }
+
+    let contador = 0;
+
+    for (let i = 1; i <= 20; i++) {
+        if (numeros.includes(i)) {
+            contador++;
         }
     }
 
-    return mayor;
+    console.log("Números distintos que han aparecido: " + contador);
 }
 
-let numeros = [4, 12, 7, 25, 3, 18];
-
-console.log(numeroMayor(numeros));
+contarNumeros();
